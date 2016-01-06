@@ -1,6 +1,6 @@
 {
   "name": "react-native-android-tablayout",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React Native Android native TabLayout component",
   "main": "index.android.js",
   "scripts": {
