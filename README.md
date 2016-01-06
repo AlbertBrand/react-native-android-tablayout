@@ -1,6 +1,6 @@
 # React Native Android TabLayout native component
 
-<iframe src='https://gfycat.com/ifr/QualifiedFlusteredHornet' frameborder='0' scrolling='no' width='650' height='366' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);' ></iframe>
+![Image of tablayout](https://i.imgur.com/qWOWugu.gif)
 
 ## Installation
 
