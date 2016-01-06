@@ -1,0 +1,27 @@
+{
+  "name": "react-native-android-tablayout",
+  "version": "0.0.1",
+  "description": "React Native Android native TabLayout",
+  "main": "index.android.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertBrand/react-native-android-tablayout.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "android",
+    "tablayout",
+    "design",
+    "support"
+  ],
+  "author": "Albert Brand <abrand@xebia.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlbertBrand/react-native-android-tablayout/issues"
+  },
+  "homepage": "https://github.com/AlbertBrand/react-native-android-tablayout#readme"
+}
