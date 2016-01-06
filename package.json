@@ -1,7 +1,7 @@
 {
   "name": "react-native-android-tablayout",
-  "version": "0.0.1",
-  "description": "React Native Android native TabLayout",
+  "version": "0.0.2",
+  "description": "React Native Android native TabLayout component",
   "main": "index.android.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/AlbertBrand/react-native-android-tablayout.git"
   },
   "keywords": [
-    "react",
-    "native",
+    "react-component",
+    "react-native",
     "android",
     "tablayout",
     "design",
