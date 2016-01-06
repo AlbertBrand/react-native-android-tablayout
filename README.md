@@ -1,5 +1,7 @@
 # React Native Android TabLayout native component
 
+![Image of tablayout](https://i.imgur.com/qWOWugu.gif)
+
 ## Installation
 
 Install module with NPM
