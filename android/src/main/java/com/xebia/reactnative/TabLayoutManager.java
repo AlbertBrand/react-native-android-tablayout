@@ -1,10 +1,16 @@
 package com.xebia.reactnative;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
@@ -17,6 +23,7 @@ import java.util.List;
 public class TabLayoutManager extends ViewGroupManager<TabLayout> {
   public static final String REACT_CLASS = "TabLayout";
 
+  private Context context;
   private EventDispatcher mEventDispatcher;
   private List<TabStub> mTabStubs = new ArrayList<>();
 
@@ -27,6 +34,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
 
   @Override
   protected TabLayout createViewInstance(ThemedReactContext themedReactContext) {
+    context = themedReactContext;
     final TabLayout tabLayout = new TabLayout(themedReactContext);
     tabLayout.setOnTabSelectedListener(onTabSelectedListener);
     return tabLayout;
@@ -45,8 +53,39 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
     tabStub.tab = newTab;
     mTabStubs.add(tabStub);
 
-    newTab.setText(tabStub.name);
-    // TODO icon / customview
+    // TODO check if custom view is really necessary
+    View customView = LayoutInflater.from(context).inflate(R.layout.custom_tab_view, null);
+    TextView tabText = (TextView) customView.findViewById(R.id.tabText);
+    ImageView tabImage = (ImageView) customView.findViewById(R.id.tabImage);
+    tabText.setText(tabStub.name);
+
+    if (tabStub.iconUri != null) {
+      Log.d(REACT_CLASS, "iconUri: " + tabStub.iconUri);
+      // iconUri only supports file:// for now
+      if (tabStub.iconUri.startsWith("file://")) {
+        String pathName = tabStub.iconUri.substring(7);
+        Bitmap bm = BitmapFactory.decodeFile(pathName);
+        tabImage.setImageBitmap(bm);
+      }
+    } else if (tabStub.iconResId != null) {
+      try {
+        String iconPackage = tabStub.iconPackage != null ? tabStub.iconPackage : context.getPackageName();
+        Log.d(REACT_CLASS, "iconResId: " + tabStub.iconResId + " iconPackage: " + iconPackage);
+        int resId = context.getResources().getIdentifier(tabStub.iconResId, "drawable", iconPackage);
+        tabImage.setImageResource(resId);
+      } catch (Exception e) {
+        Log.e(REACT_CLASS, "Icon resource id '" + tabStub.iconResId + "' not found", e);
+      }
+    }
+
+    if (tabStub.iconSize > 0) {
+      float scale = context.getResources().getDisplayMetrics().density;
+      int iconSize = Math.round(tabStub.iconSize * scale);
+      tabImage.getLayoutParams().width = iconSize;
+      tabImage.getLayoutParams().height = iconSize;
+    }
+
+    newTab.setCustomView(customView);
     parent.addTab(newTab);
   }
 
@@ -74,12 +113,10 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
 
     @Override
     public void onTabUnselected(Tab tab) {
-
     }
 
     @Override
     public void onTabReselected(Tab tab) {
-
     }
 
     private TabStub findTabStubFor(Tab tab) {

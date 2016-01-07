@@ -25,6 +25,26 @@ public class TabManager extends SimpleViewManager<TabStub> {
     view.name = name;
   }
 
+  @ReactProp(name = "iconResId")
+  public void setIconResId(TabStub view, String iconResId) {
+    view.iconResId = iconResId;
+  }
+
+  @ReactProp(name = "iconPackage")
+  public void setIconPackage(TabStub view, String iconPackage) {
+    view.iconPackage = iconPackage;
+  }
+
+  @ReactProp(name = "iconUri")
+  public void setIconUri(TabStub view, String iconUri) {
+    view.iconUri = iconUri;
+  }
+
+  @ReactProp(name = "iconSize")
+  public void setIconSize(TabStub view, int iconSize) {
+    view.iconSize = iconSize;
+  }
+
   @Override
   public Map getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(

@@ -9,6 +9,11 @@ public class TabStub extends View {
     super(context);
   }
 
-  public String name;
   public Tab tab;
+
+  public String name;
+  public String iconResId;
+  public String iconPackage;
+  public String iconUri;
+  public int iconSize;
 }

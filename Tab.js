@@ -5,6 +5,10 @@ class Tab extends React.Component {
   static propTypes = {
     ...View.propTypes,
     name: PropTypes.string,
+    iconUri: PropTypes.string,
+    iconResId: PropTypes.string,
+    iconPackage: PropTypes.string,
+    iconSize: PropTypes.number,
     onTabSelected: PropTypes.func,
   };
 
