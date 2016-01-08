@@ -46,9 +46,9 @@ public class TabManager extends SimpleViewManager<TabStub> {
   }
 
   @Override
-  public Map getExportedCustomDirectEventTypeConstants() {
+  public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(
-        TabSelectedEvent.EVENT_NAME, MapBuilder.of("registrationName", "onTabSelected")
+        TabSelectedEvent.EVENT_NAME, (Object) MapBuilder.of("registrationName", "onTabSelected")
     );
   }
 }
