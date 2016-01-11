@@ -7,7 +7,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 
 import java.util.Map;
 
-public class TabManager extends SimpleViewManager<TabStub> {
+public class TabManager extends SimpleViewManager<ReactTabStub> {
   public static final String REACT_CLASS = "Tab";
 
   @Override
@@ -16,32 +16,32 @@ public class TabManager extends SimpleViewManager<TabStub> {
   }
 
   @Override
-  protected TabStub createViewInstance(ThemedReactContext themedReactContext) {
-    return new TabStub(themedReactContext);
+  protected ReactTabStub createViewInstance(ThemedReactContext themedReactContext) {
+    return new ReactTabStub(themedReactContext);
   }
 
   @ReactProp(name = "name")
-  public void setName(TabStub view, String name) {
+  public void setName(ReactTabStub view, String name) {
     view.name = name;
   }
 
   @ReactProp(name = "iconResId")
-  public void setIconResId(TabStub view, String iconResId) {
+  public void setIconResId(ReactTabStub view, String iconResId) {
     view.iconResId = iconResId;
   }
 
   @ReactProp(name = "iconPackage")
-  public void setIconPackage(TabStub view, String iconPackage) {
+  public void setIconPackage(ReactTabStub view, String iconPackage) {
     view.iconPackage = iconPackage;
   }
 
   @ReactProp(name = "iconUri")
-  public void setIconUri(TabStub view, String iconUri) {
+  public void setIconUri(ReactTabStub view, String iconUri) {
     view.iconUri = iconUri;
   }
 
   @ReactProp(name = "iconSize")
-  public void setIconSize(TabStub view, int iconSize) {
+  public void setIconSize(ReactTabStub view, int iconSize) {
     view.iconSize = iconSize;
   }
 
