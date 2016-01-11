@@ -1,17 +1,28 @@
-const React = require('react-native');
-const { requireNativeComponent, View } = React;
+import React from 'react-native';
+const {
+  PropTypes,
+  requireNativeComponent,
+  UIManager,
+  View,
+  } = React;
 
 class TabLayout extends React.Component {
   static propTypes = {
     ...View.propTypes,
+    selectedTab: PropTypes.number,
+    onTabSelected: PropTypes.func,
   };
+
+  _onTabSelected(e:Event) {
+    this.props.onTabSelected && this.props.onTabSelected(e);
+  }
 
   render() {
     return (
       <AndroidTabLayout
-        style={[{ height: 48 }, this.props.style]}>
-        {this.props.children}
-      </AndroidTabLayout>
+        {...this.props}
+        style={[{ height: 48 }, this.props.style]}
+        onTabSelected={this._onTabSelected.bind(this)}/>
     );
   }
 }

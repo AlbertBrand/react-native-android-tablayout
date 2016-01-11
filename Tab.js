@@ -1,5 +1,9 @@
-const React = require('react-native');
-const { requireNativeComponent, PropTypes, View } = React;
+import React from 'react-native';
+const {
+  PropTypes,
+  requireNativeComponent,
+  View,
+  } = React;
 
 class Tab extends React.Component {
   static propTypes = {
@@ -12,10 +16,8 @@ class Tab extends React.Component {
     onTabSelected: PropTypes.func,
   };
 
-  _onTabSelected(e: Event) {
-    if (this.props.onTabSelected) {
-      this.props.onTabSelected(e);
-    }
+  _onTabSelected(e:Event) {
+    this.props.onTabSelected && this.props.onTabSelected(e);
   }
 
   render() {
