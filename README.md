@@ -34,7 +34,7 @@ dependencies {
 }
 ```
 
-Register module in `MainActivity.java`:
+Register module in `MainActivity.java` for React-Native 0.17:
 
 ```java
 // ...
@@ -61,6 +61,29 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
   // ...
 }
 ```
+
+For React-Native 0.18+:
+
+```java
+// ...
+
+import com.xebia.reactnative.TabLayoutPackage;    // <--- import
+
+public class MainActivity extends ReactActivity {
+    // ...
+    
+    @Override
+    protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new TabLayoutPackage()                // <--- add package
+        );
+    }
+    
+    // ...
+}
+```
+
 
 Run `react-native run-android` from your project root.
 
