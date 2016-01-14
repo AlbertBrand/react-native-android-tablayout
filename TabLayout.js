@@ -9,6 +9,7 @@ const {
 class TabLayout extends React.Component {
   static propTypes = {
     ...View.propTypes,
+    selectedTabIndicatorColor: PropTypes.string,
     selectedTab: PropTypes.number,
     onTabSelected: PropTypes.func,
   };
