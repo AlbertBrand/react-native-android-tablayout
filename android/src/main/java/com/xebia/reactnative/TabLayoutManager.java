@@ -3,6 +3,7 @@ package com.xebia.reactnative;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
@@ -100,6 +101,17 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
     Log.d(REACT_CLASS, "selectedTab " + selectedTab);
     // TODO selectTab does not work until child components are rendered
     selectTab(view, selectedTab);
+  }
+
+  @ReactProp(name = "selectedTabIndicatorColor")
+  public void setSelectedTabIndicatorColor(ReactTabLayout view, String indicatorColor) {
+    Log.d(REACT_CLASS, "changing selectedTabIndicatorColor to" + indicatorColor);
+    try {
+      int highlightColor = Color.parseColor(indicatorColor);
+      view.setSelectedTabIndicatorColor(highlightColor);
+    } catch (IllegalArgumentException e) {
+      Log.w(REACT_CLASS, "Unparseable color: " + indicatorColor);
+    }
   }
 
   @Override
