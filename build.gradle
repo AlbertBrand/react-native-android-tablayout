@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.github.javaparser:javaparser-core:2.3.0'
+}
+
+task install(type: JavaExec) {
+    main 'com.xebia.reactnative.Installer'
+    classpath sourceSets.main.runtimeClasspath
+    workingDir '../..'
+}

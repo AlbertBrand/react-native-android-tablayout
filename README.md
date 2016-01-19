@@ -13,79 +13,19 @@ Install module with NPM
 ```bash
 npm i --save react-native-android-tablayout
 ```
-    
-Edit `android/settings.gradle`:
 
-```gradle
-// ...
+If you have a fairly default setup of your project (React-Native 0.18+), you can try out the installer task. 
+It will try to automatically perform the required changes on the Gradle and Java files for you. It won't back up 
+anything so make sure you can reset its changes.
 
-include ':react-native-android-tablayout'
-project(':react-native-android-tablayout').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-android-tablayout/android')
+```bash
+gradle -b node_modules/react-native-android-tablayout/build.gradle install
 ```
 
-Edit `android/app/build.gradle`:
+[Manual install guide](docs/manual_install.md) (with details on how to install on older versions of React-Native).
 
-```gradle
-// ...
-
-dependencies {
-  // ...
-  compile project(':react-native-android-tablayout')
-}
-```
-
-Register module in `MainActivity.java` for React-Native 0.17:
-
-```java
-// ...
-
-import com.xebia.reactnative.TabLayoutPackage;    // <--- import
-
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    // ...
-    mReactInstanceManager = ReactInstanceManager.builder()
-      .setApplication(getApplication())
-      .setBundleAssetName("index.android.bundle")
-      .setJSMainModuleName("index.android")
-      .addPackage(new MainReactPackage())
-      .addPackage(new TabLayoutPackage())         // <--- add package
-      .setUseDeveloperSupport(BuildConfig.DEBUG)
-      .setInitialLifecycleState(LifecycleState.RESUMED)
-      .build();
-    // ...
-  }
-
-  // ...
-}
-```
-
-For React-Native 0.18+:
-
-```java
-// ...
-
-import com.xebia.reactnative.TabLayoutPackage;    // <--- import
-
-public class MainActivity extends ReactActivity {
-    // ...
-    
-    @Override
-    protected List<ReactPackage> getPackages() {
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new TabLayoutPackage()                // <--- add package
-        );
-    }
-    
-    // ...
-}
-```
-
-
-Run `react-native run-android` from your project root.
+After the configuration, run `react-native run-android` from your project root to see if there are no compilation
+failures.
 
 ## Usage
 
@@ -268,6 +208,7 @@ const MyViewPagerTabView = React.createClass({
 
 ## Todo
 
+  * move examples to a real example showcase
   * mirror Android API:
     * icon alignment (icons on side)
     * colors, fonts
