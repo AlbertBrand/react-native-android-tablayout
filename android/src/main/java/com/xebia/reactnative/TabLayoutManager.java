@@ -59,6 +59,10 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
     ImageView tabImage = (ImageView) customView.findViewById(R.id.tabImage);
     tabText.setText(tabStub.name);
 
+    if (tabStub.textColor != null) {
+        tabText.setTextColor(Color.parseColor(tabStub.textColor));
+    }
+
     if (tabStub.iconUri != null) {
       Log.d(REACT_CLASS, "iconUri: " + tabStub.iconUri);
       // iconUri only supports file:// for now

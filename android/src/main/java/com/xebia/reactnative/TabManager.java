@@ -45,6 +45,11 @@ public class TabManager extends SimpleViewManager<ReactTabStub> {
     view.iconSize = iconSize;
   }
 
+  @ReactProp(name = "textColor")
+  public void setTextColor(ReactTabStub view, String textColor) {
+    view.textColor = textColor;
+  }
+
   @Override
   public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(
