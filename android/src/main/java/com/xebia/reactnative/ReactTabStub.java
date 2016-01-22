@@ -15,5 +15,6 @@ public class ReactTabStub extends View {
   public String iconResId;
   public String iconPackage;
   public String iconUri;
+  public String textColor;
   public int iconSize;
 }
