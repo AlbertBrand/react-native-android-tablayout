@@ -60,7 +60,13 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
     tabText.setText(tabStub.name);
 
     if (tabStub.textColor != null) {
-        tabText.setTextColor(Color.parseColor(tabStub.textColor));
+      try {
+        Log.d(REACT_CLASS, "textColor: " + tabStub.textColor);
+        int textColor = Color.parseColor(tabStub.textColor);
+        tabText.setTextColor(textColor);
+      } catch (Exception e) {
+        Log.e(REACT_CLASS, "Can't parse textColor '" + tabStub.textColor + "'", e);
+      }
     }
 
     if (tabStub.iconUri != null) {
