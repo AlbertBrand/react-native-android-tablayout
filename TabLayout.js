@@ -11,6 +11,7 @@ class TabLayout extends React.Component {
     ...View.propTypes,
     selectedTabIndicatorColor: PropTypes.string,
     selectedTab: PropTypes.number,
+    tabMode: PropTypes.string,
     onTabSelected: PropTypes.func,
   };
 

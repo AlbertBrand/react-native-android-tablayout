@@ -115,12 +115,23 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
 
   @ReactProp(name = "selectedTabIndicatorColor")
   public void setSelectedTabIndicatorColor(ReactTabLayout view, String indicatorColor) {
-    Log.d(REACT_CLASS, "changing selectedTabIndicatorColor to" + indicatorColor);
+    Log.d(REACT_CLASS, "selectedTabIndicatorColor " + indicatorColor);
     try {
       int highlightColor = Color.parseColor(indicatorColor);
       view.setSelectedTabIndicatorColor(highlightColor);
     } catch (IllegalArgumentException e) {
       Log.w(REACT_CLASS, "Unparseable color: " + indicatorColor);
+    }
+  }
+
+  @ReactProp(name = "tabMode")
+  public void setTabMode(ReactTabLayout view, String mode) {
+    Log.d(REACT_CLASS, "tabMode " + mode);
+    try {
+      TabMode tabMode = TabMode.fromString(mode);
+      view.setTabMode(tabMode.mode);
+    } catch (IllegalArgumentException e) {
+      Log.w(REACT_CLASS, "No valid tabMode: " + mode);
     }
   }
 

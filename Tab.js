@@ -12,8 +12,8 @@ class Tab extends React.Component {
     iconUri: PropTypes.string,
     iconResId: PropTypes.string,
     iconPackage: PropTypes.string,
-    textColor: PropTypes.string,
     iconSize: PropTypes.number,
+    textColor: PropTypes.string,
     onTabSelected: PropTypes.func,
   };
 
