@@ -13,4 +13,13 @@ public class ReactTabLayout extends TabLayout {
   }
 
   public List<ReactTabStub> tabStubs = new ArrayList<>();
+
+  public InitialState initialState = InitialState.TAB_POSITION_UNSET;
+  public int initialTabPosition;
+
+  enum InitialState {
+    TAB_POSITION_UNSET,
+    TAB_POSITION_SET,
+    TAB_SELECTED
+  }
 }

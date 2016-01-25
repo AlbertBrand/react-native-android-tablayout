@@ -18,6 +18,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.events.EventDispatcher;
+import com.xebia.reactnative.ReactTabLayout.InitialState;
 
 import java.util.Map;
 
@@ -33,6 +34,7 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
 
   @Override
   protected ReactTabLayout createViewInstance(ThemedReactContext themedReactContext) {
+    Log.d(REACT_CLASS, "createViewInstance");
     ReactTabLayout tabLayout = new ReactTabLayout(themedReactContext);
     tabLayout.setOnTabSelectedListener(new TabLayoutOnTabSelectedListener(tabLayout));
     return tabLayout;
@@ -97,19 +99,17 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
 
     newTab.setCustomView(customView);
     parent.addTab(newTab);
-  }
 
-  @Override
-  public void removeViewAt(ReactTabLayout parent, int index) {
-    Log.d(REACT_CLASS, "removeViewAt");
-    // TODO remove tab
-    super.removeViewAt(parent, index);
+    if (parent.initialState == InitialState.TAB_POSITION_SET &&
+        parent.initialTabPosition == index) {
+      newTab.select();
+      parent.initialState = InitialState.TAB_SELECTED;
+    }
   }
 
   @ReactProp(name = "selectedTab", defaultInt = 0)
   public void setSelectedTab(ReactTabLayout view, int selectedTab) {
     Log.d(REACT_CLASS, "selectedTab " + selectedTab);
-    // TODO selectTab does not work until child components are rendered
     selectTab(view, selectedTab);
   }
 
@@ -149,7 +149,13 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
 
   private void selectTab(ReactTabLayout tabLayout, int position) {
     if (position < 0 || position > tabLayout.getTabCount() - 1) {
-      Log.w(REACT_CLASS, "Tried to select out of bounds tab");
+      if (tabLayout.initialState == InitialState.TAB_POSITION_UNSET) {
+        // store initial position until tab is added
+        tabLayout.initialTabPosition = position;
+        tabLayout.initialState = InitialState.TAB_POSITION_SET;
+      } else {
+        Log.w(REACT_CLASS, "Tried to select out of bounds tab");
+      }
       return;
     }
     Tab tab = tabLayout.getTabAt(position);
@@ -167,13 +173,18 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
 
     @Override
     public void onTabSelected(Tab tab) {
-      ReactTabStub tabStub = findTabStubFor(tab);
-      if (tabStub != null) {
-        Log.d(REACT_CLASS, "dispatchEvent");
-        int position = mTabLayout.tabStubs.indexOf(tabStub);
-        mEventDispatcher.dispatchEvent(new TabSelectedEvent(tabStub.getId(), position));
-        mEventDispatcher.dispatchEvent(new TabSelectedEvent(mTabLayout.getId(), position));
+      if (mTabLayout.initialState == InitialState.TAB_POSITION_SET) {
+        // don't send tabSelected events when initial tab is set but not selected yet
+        return;
       }
+      ReactTabStub tabStub = findTabStubFor(tab);
+      if (tabStub == null) {
+        return;
+      }
+      Log.d(REACT_CLASS, "dispatchEvent");
+      int position = mTabLayout.tabStubs.indexOf(tabStub);
+      mEventDispatcher.dispatchEvent(new TabSelectedEvent(tabStub.getId(), position));
+      mEventDispatcher.dispatchEvent(new TabSelectedEvent(mTabLayout.getId(), position));
     }
 
     @Override

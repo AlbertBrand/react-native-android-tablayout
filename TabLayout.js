@@ -2,7 +2,6 @@ import React from 'react-native';
 const {
   PropTypes,
   requireNativeComponent,
-  UIManager,
   View,
   } = React;
 

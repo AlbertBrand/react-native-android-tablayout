@@ -11,7 +11,7 @@ export default class StatefulTabLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pagePosition: 0,
+      pagePosition: 2, // start on third tab
     };
   }
 
