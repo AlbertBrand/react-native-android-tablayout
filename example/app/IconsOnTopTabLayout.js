@@ -4,8 +4,22 @@ import React, {
   View
 } from 'react-native';
 import { Tab, TabLayout } from 'react-native-android-tablayout'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class IconsOnTopTabLayout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      iconUri: ''
+    };
+  }
+
+  componentDidMount() {
+    Icon.getImageSource('user', 24, 'red').then(source => {
+      this.setState({ iconUri: source.uri })
+    });
+  }
+
   render() {
     return (
       <View>
@@ -13,7 +27,7 @@ export default class IconsOnTopTabLayout extends Component {
           <Tab
             name="Tab 1"
             iconSize={24}
-            iconUri="file:///data/data/com.example/cache/abcdef_24@3x.png"/>
+            iconUri={this.state.iconUri}/>
           <Tab
             name="Tab 2"
             iconSize={24}

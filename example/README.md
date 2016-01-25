@@ -18,3 +18,4 @@ You can switch between different examples via the drawer menu:
 * [IconsOnTopTabLayout](app/IconsOnTopTabLayout.js)
 * [StatefulTabLayout](app/StatefulTabLayout.js)
 * [ViewPagerTabLayout](app/ViewPagerTabLayout.js)
+* [ScrollableTabLayout](app/ScrollableTabLayout.js)

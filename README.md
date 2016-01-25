@@ -29,7 +29,32 @@ failures.
 
 ## Usage
 
-See the example project under `example`. To run it, check the [example README](example/README.md).
+### TabLayout
+
+Prop                      | Type    | Explanation
+---                       | ---     | ---
+selectedTabIndicatorColor | string  | Color of indicator line. Specify as #rrggbb.
+selectedTab               | number  | Use for selecting default tab or connect to state.
+tabMode                   | string  | Set tab mode. Default 'fixed', use 'scrollable' when tab need to scroll.
+onTabSelected             | func    | Callback function when a tab is selected.
+
+
+### Tab
+
+Prop          | Type    | Explanation
+---           | ---     | ---
+name          | string  | Tab name.
+iconUri       | string  | Icon URI. Only allows file:// URIs. See combination with react-native-vector-icons.
+iconResId     | string  | Icon resource ID. Points to src/res/drawable*/<iconResId>.*
+iconPackage   | string  | Icon resource package. If not provided, defaults to current package. Use 'android' for built in icons. See example.
+iconSize      | number  | Icon size.
+textColor     | string  | Text color. Specify as #rrggbb.
+onTabSelected | func    | Callback function when a tab is selected
+
+
+## Example 
+
+See the example project under [example](example).
 
 [Example documentation](docs/example_docs.md)
 

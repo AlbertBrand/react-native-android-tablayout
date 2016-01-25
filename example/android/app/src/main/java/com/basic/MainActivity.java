@@ -3,6 +3,7 @@ package com.basic;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.xebia.reactnative.TabLayoutPackage;
 
 import java.util.Arrays;
@@ -35,7 +36,8 @@ public class MainActivity extends ReactActivity {
   protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new TabLayoutPackage()
+        new TabLayoutPackage(),
+        new VectorIconsPackage()
     );
   }
 }

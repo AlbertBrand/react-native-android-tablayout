@@ -1,16 +1,10 @@
 package com.xebia.reactnative;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ReactProp;
@@ -41,69 +35,23 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
   }
 
   @Override
-  public void addView(ReactTabLayout parent, View child, int index) {
+  public void addView(ReactTabLayout tabLayout, View child, int index) {
     Log.d(REACT_CLASS, "addView");
     if (!(child instanceof ReactTabStub)) {
       throw new JSApplicationIllegalArgumentException("The TabLayout can only have Tab children");
     }
 
-    Context context = parent.getContext();
-
-    Tab newTab = parent.newTab();
-
+    Tab tab = tabLayout.newTab();
     ReactTabStub tabStub = (ReactTabStub) child;
-    tabStub.tab = newTab;
-    parent.tabStubs.add(tabStub);
+    tabStub.attachCustomTabView(tab);
 
-    // TODO check if custom view is really necessary
-    View customView = LayoutInflater.from(context).inflate(R.layout.custom_tab_view, null);
-    TextView tabText = (TextView) customView.findViewById(R.id.tabText);
-    ImageView tabImage = (ImageView) customView.findViewById(R.id.tabImage);
-    tabText.setText(tabStub.name);
+    tabLayout.tabStubs.add(tabStub);
+    tabLayout.addTab(tab);
 
-    if (tabStub.textColor != null) {
-      try {
-        Log.d(REACT_CLASS, "textColor: " + tabStub.textColor);
-        int textColor = Color.parseColor(tabStub.textColor);
-        tabText.setTextColor(textColor);
-      } catch (Exception e) {
-        Log.e(REACT_CLASS, "Can't parse textColor '" + tabStub.textColor + "'", e);
-      }
-    }
-
-    if (tabStub.iconUri != null) {
-      Log.d(REACT_CLASS, "iconUri: " + tabStub.iconUri);
-      // iconUri only supports file:// for now
-      if (tabStub.iconUri.startsWith("file://")) {
-        String pathName = tabStub.iconUri.substring(7);
-        Bitmap bm = BitmapFactory.decodeFile(pathName);
-        tabImage.setImageBitmap(bm);
-      }
-    } else if (tabStub.iconResId != null) {
-      try {
-        String iconPackage = tabStub.iconPackage != null ? tabStub.iconPackage : context.getPackageName();
-        Log.d(REACT_CLASS, "iconResId: " + tabStub.iconResId + " iconPackage: " + iconPackage);
-        int resId = context.getResources().getIdentifier(tabStub.iconResId, "drawable", iconPackage);
-        tabImage.setImageResource(resId);
-      } catch (Exception e) {
-        Log.e(REACT_CLASS, "Icon resource id '" + tabStub.iconResId + "' not found", e);
-      }
-    }
-
-    if (tabStub.iconSize > 0) {
-      float scale = context.getResources().getDisplayMetrics().density;
-      int iconSize = Math.round(tabStub.iconSize * scale);
-      tabImage.getLayoutParams().width = iconSize;
-      tabImage.getLayoutParams().height = iconSize;
-    }
-
-    newTab.setCustomView(customView);
-    parent.addTab(newTab);
-
-    if (parent.initialState == InitialState.TAB_POSITION_SET &&
-        parent.initialTabPosition == index) {
-      newTab.select();
-      parent.initialState = InitialState.TAB_SELECTED;
+    if (tabLayout.initialState == InitialState.TAB_POSITION_SET &&
+        tabLayout.initialTabPosition == index) {
+      tabLayout.initialState = InitialState.TAB_SELECTED;
+      tab.select();
     }
   }
 
