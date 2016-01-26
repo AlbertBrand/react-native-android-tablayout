@@ -33,10 +33,10 @@ failures.
 
 Prop                      | Type    | Explanation
 ---                       | ---     | ---
-selectedTab               | number  | Use for selecting the initial tab and/or connecting to state. See the [StatefulTabLayout example](/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
+selectedTab               | number  | Use for selecting the initial tab and/or connecting to state. See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 selectedTabIndicatorColor | string  | Color of indicator line. Specify as #rrggbb.
 tabMode                   | string  | Set tab mode. Default 'fixed', use 'scrollable' when tabstrip needs to scroll.
-onTabSelected             | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
+onTabSelected             | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 
 ### Tab
 
@@ -44,11 +44,11 @@ Prop          | Type    | Explanation
 ---           | ---     | ---
 name          | string  | Tab name.
 iconResId     | string  | Icon resource ID. Points to src/res/drawable*/<iconResId>.*
-iconPackage   | string  | Icon resource package. If not provided, defaults to current package. Use 'android' for built-in icons. See the [IconsOnTopTabLayout example](/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
-iconUri       | string  | Icon URI. Only allows file:// URIs. See how to combine with [react-native-vector-icons](/oblador/react-native-vector-icons) in the [IconsOnTopTabLayout example](/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
+iconPackage   | string  | Icon resource package. If not provided, defaults to current package. Use 'android' for built-in icons. See the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
+iconUri       | string  | Icon URI. Only allows file:// URIs. See how to combine with [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) in the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
 iconSize      | number  | Icon size.
 textColor     | string  | Text color. Specify as #rrggbb.
-onTabSelected | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
+onTabSelected | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 
 
 ## Example 
