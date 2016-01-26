@@ -12,22 +12,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ReactTabStub extends View {
-  public static final String REACT_CLASS = "ReactTabStub";
+  public static final String TAG = "ReactTabStub";
 
   public ReactTabStub(Context context) {
     super(context);
   }
 
   Tab tab;
-  TextView tabText;
-  ImageView tabImage;
 
-  String name;
-  String iconResId;
-  String iconPackage;
-  String iconUri;
-  int iconSize;
-  String textColor;
+  private TextView tabText;
+  private ImageView tabImage;
+
+  private String name;
+  private String iconResId;
+  private String iconPackage;
+  private String iconUri;
+  private int iconSize;
+  private String textColor;
 
   public void attachCustomTabView(Tab tab) {
     View customView = LayoutInflater.from(getContext()).inflate(R.layout.custom_tab_view, null);
@@ -40,45 +41,72 @@ public class ReactTabStub extends View {
     if (name != null) {
       nameChanged();
     }
-
     if (textColor != null) {
       textColorChanged();
     }
-
     if (iconUri != null) {
       iconUriChanged();
     } else if (iconResId != null) {
       iconResourceChanged();
     }
-
     if (iconSize > 0) {
       iconSizeChanged();
     }
   }
 
-  public void nameChanged() {
-    Log.d(REACT_CLASS, "nameChanged: " + name);
+  public void setName(String name) {
+    this.name = name;
+    nameChanged();
+  }
+
+  public void setIconResId(String iconResId) {
+    this.iconResId = iconResId;
+    iconResourceChanged();
+  }
+
+  public void setIconPackage(String iconPackage) {
+    this.iconPackage = iconPackage;
+    iconResourceChanged();
+  }
+
+  public void setIconUri(String iconUri) {
+    this.iconUri = iconUri;
+    iconUriChanged();
+  }
+
+  public void setIconSize(int iconSize) {
+    this.iconSize = iconSize;
+    iconSizeChanged();
+  }
+
+  public void setTextColor(String textColor) {
+    this.textColor = textColor;
+    textColorChanged();
+  }
+
+  private void nameChanged() {
     if (tabText == null) return;
+    Log.d(TAG, "nameChanged: " + name);
 
     tabText.setText(name);
   }
 
-  public void iconResourceChanged() {
-    Log.d(REACT_CLASS, "iconResourceChanged, id: " + iconResId + " package: " + iconPackage);
+  private void iconResourceChanged() {
     if (tabImage == null) return;
+    Log.d(TAG, "iconResourceChanged, id: " + iconResId + " package: " + iconPackage);
 
     String packageName = iconPackage != null ? iconPackage : getContext().getPackageName();
     try {
       int resId = getContext().getResources().getIdentifier(iconResId, "drawable", packageName);
       tabImage.setImageResource(resId);
     } catch (Exception e) {
-      Log.e(REACT_CLASS, "Icon resource id " + iconResId + " with package " + packageName + " not found", e);
+      Log.e(TAG, "Icon resource id " + iconResId + " with package " + packageName + " not found", e);
     }
   }
 
-  public void iconUriChanged() {
-    Log.d(REACT_CLASS, "iconUriChanged: " + iconUri);
+  private void iconUriChanged() {
     if (tabImage == null) return;
+    Log.d(TAG, "iconUriChanged: " + iconUri);
 
     // iconUri only supports file:// for now
     if (iconUri.startsWith("file://")) {
@@ -88,9 +116,9 @@ public class ReactTabStub extends View {
     }
   }
 
-  public void iconSizeChanged() {
-    Log.d(REACT_CLASS, "iconSizeChanged: " + iconSize);
+  private void iconSizeChanged() {
     if (tabImage == null) return;
+    Log.d(TAG, "iconSizeChanged: " + iconSize);
 
     float scale = getContext().getResources().getDisplayMetrics().density;
     int size = Math.round(iconSize * scale);
@@ -98,15 +126,15 @@ public class ReactTabStub extends View {
     tabImage.getLayoutParams().height = size;
   }
 
-  public void textColorChanged() {
-    Log.d(REACT_CLASS, "textColorChanged: " + textColor);
+  private void textColorChanged() {
     if (tabText == null) return;
+    Log.d(TAG, "textColorChanged: " + textColor);
 
     try {
       int color = Color.parseColor(textColor);
       tabText.setTextColor(color);
     } catch (Exception e) {
-      Log.e(REACT_CLASS, "Can't parse textColor: " + textColor, e);
+      Log.e(TAG, "Can't parse textColor: " + textColor, e);
     }
   }
 }

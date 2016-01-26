@@ -22,38 +22,32 @@ public class TabManager extends SimpleViewManager<ReactTabStub> {
 
   @ReactProp(name = "name")
   public void setName(ReactTabStub view, String name) {
-    view.name = name;
-    view.nameChanged();
+    view.setName(name);
   }
 
   @ReactProp(name = "iconResId")
   public void setIconResId(ReactTabStub view, String iconResId) {
-    view.iconResId = iconResId;
-    view.iconResourceChanged();
+    view.setIconResId(iconResId);
   }
 
   @ReactProp(name = "iconPackage")
   public void setIconPackage(ReactTabStub view, String iconPackage) {
-    view.iconPackage = iconPackage;
-    view.iconResourceChanged();
+    view.setIconPackage(iconPackage);
   }
 
   @ReactProp(name = "iconUri")
   public void setIconUri(ReactTabStub view, String iconUri) {
-    view.iconUri = iconUri;
-    view.iconUriChanged();
+    view.setIconUri(iconUri);
   }
 
   @ReactProp(name = "iconSize")
   public void setIconSize(ReactTabStub view, int iconSize) {
-    view.iconSize = iconSize;
-    view.iconSizeChanged();
+    view.setIconSize(iconSize);
   }
 
   @ReactProp(name = "textColor")
   public void setTextColor(ReactTabStub view, String textColor) {
-    view.textColor = textColor;
-    view.textColorChanged();
+    view.setTextColor(textColor);
   }
 
   @Override
