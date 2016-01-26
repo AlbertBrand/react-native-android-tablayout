@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,8 +30,9 @@ public class ReactTabStub extends View {
   private String textColor;
 
   public void attachCustomTabView(Tab tab) {
-    View customView = LayoutInflater.from(getContext()).inflate(R.layout.custom_tab_view, null);
-    tab.setCustomView(customView);
+    tab.setCustomView(R.layout.custom_tab_view);
+    View customView = tab.getCustomView();
+    assert customView != null;
 
     this.tab = tab;
     tabText = (TextView) customView.findViewById(R.id.tabText);
