@@ -48,6 +48,12 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
     tabLayout.tabStubs.add(tabStub);
     tabLayout.addTab(tab);
 
+    // set accessibilityLabel on parent TabView, which is now available after addTab call
+    if (tabStub.getContentDescription() != null) {
+      tabStub.accessibilityLabelChanged();
+    }
+
+    // when initial position was stored, update tab selection
     if (tabLayout.initialState == InitialState.TAB_POSITION_SET &&
         tabLayout.initialTabPosition == index) {
       tabLayout.initialState = InitialState.TAB_SELECTED;

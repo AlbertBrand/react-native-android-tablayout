@@ -40,16 +40,16 @@ onTabSelected             | func    | Provide callback function with `e:Event` a
 
 ### Tab
 
-Prop          | Type    | Explanation
----           | ---     | ---
-name          | string  | Tab name.
-iconResId     | string  | Icon resource ID. Points to src/res/drawable*/<iconResId>.*
-iconPackage   | string  | Icon resource package. If not provided, defaults to current package. Use 'android' for built-in icons. See the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
-iconUri       | string  | Icon URI. Only allows file:// URIs. See how to combine with [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) in the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
-iconSize      | number  | Icon size.
-textColor     | string  | Text color. Specify as #rrggbb.
-onTabSelected | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
-
+Prop                | Type    | Explanation
+---                 | ---     | ---
+name                | string  | Tab name.
+iconResId           | string  | Icon resource ID. Points to src/res/drawable*/<iconResId>.*
+iconPackage         | string  | Icon resource package. If not provided, defaults to current package. Use 'android' for built-in icons. See the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
+iconUri             | string  | Icon URI. Only allows file:// URIs. See how to combine with [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) in the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
+iconSize            | number  | Icon size.
+textColor           | string  | Text color. Specify as #rrggbb.
+onTabSelected       | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
+accessibilityLabel  | string  | Accessibility label for tab. Tabs are already set as accessible.
 
 ## Example 
 

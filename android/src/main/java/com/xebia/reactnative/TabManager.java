@@ -51,6 +51,11 @@ public class TabManager extends SimpleViewManager<ReactTabStub> {
   }
 
   @Override
+  public void setAccessibilityLabel(ReactTabStub view, String accessibilityLabel) {
+    view.setAccessibilityLabel(accessibilityLabel);
+  }
+
+  @Override
   public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(
         TabSelectedEvent.EVENT_NAME, (Object) MapBuilder.of("registrationName", "onTabSelected")

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class ReactTabStub extends View {
 
   Tab tab;
 
+  private View customView;
   private TextView tabText;
   private ImageView tabImage;
 
@@ -30,11 +32,12 @@ public class ReactTabStub extends View {
   private String textColor;
 
   public void attachCustomTabView(Tab tab) {
+    this.tab = tab;
+
     tab.setCustomView(R.layout.custom_tab_view);
-    View customView = tab.getCustomView();
+    customView = tab.getCustomView();
     assert customView != null;
 
-    this.tab = tab;
     tabText = (TextView) customView.findViewById(R.id.tabText);
     tabImage = (ImageView) customView.findViewById(R.id.tabImage);
 
@@ -82,6 +85,11 @@ public class ReactTabStub extends View {
   public void setTextColor(String textColor) {
     this.textColor = textColor;
     textColorChanged();
+  }
+
+  public void setAccessibilityLabel(String accessibilityLabel) {
+    setContentDescription(accessibilityLabel);
+    accessibilityLabelChanged();
   }
 
   private void nameChanged() {
@@ -136,5 +144,14 @@ public class ReactTabStub extends View {
     } catch (Exception e) {
       Log.e(TAG, "Can't parse textColor: " + textColor, e);
     }
+  }
+
+  public void accessibilityLabelChanged() {
+    if (customView == null || customView.getParent() == null) return;
+    CharSequence contentDescription = getContentDescription();
+    Log.d(TAG, "accessibilityLabelChanged: " + contentDescription);
+
+    ViewGroup parent = (ViewGroup) customView.getParent();
+    parent.setContentDescription(contentDescription);
   }
 }
