@@ -1,11 +1,13 @@
-import React from 'react-native';
-const {
+import React, {
+  Component,
   PropTypes,
   requireNativeComponent,
   View,
-  } = React;
+} from 'react-native';
 
-class TabLayout extends React.Component {
+const AndroidTabLayout = requireNativeComponent('TabLayout', TabLayout);
+
+class TabLayout extends Component {
   static propTypes = {
     ...View.propTypes,
     selectedTabIndicatorColor: PropTypes.string,
@@ -27,7 +29,5 @@ class TabLayout extends React.Component {
     );
   }
 }
-
-var AndroidTabLayout = requireNativeComponent('TabLayout', TabLayout);
 
 module.exports = TabLayout;

@@ -1,11 +1,13 @@
-import React from 'react-native';
-const {
+import React, {
+  Component,
   PropTypes,
   requireNativeComponent,
   View,
-  } = React;
+} from 'react-native';
 
-class Tab extends React.Component {
+const AndroidTab = requireNativeComponent('Tab', Tab);
+
+class Tab extends Component {
   static propTypes = {
     ...View.propTypes,
     name: PropTypes.string,
@@ -30,7 +32,5 @@ class Tab extends React.Component {
     );
   }
 }
-
-const AndroidTab = requireNativeComponent('Tab', Tab);
 
 module.exports = Tab;
