@@ -46,7 +46,7 @@ public class TabManager extends SimpleViewManager<ReactTabStub> {
   }
 
   @ReactProp(name = "textColor")
-  public void setTextColor(ReactTabStub view, String textColor) {
+  public void setTextColor(ReactTabStub view, int textColor) {
     view.setTextColor(textColor);
   }
 

@@ -1,10 +1,10 @@
 import React, {
   Component,
+  processColor,
   PropTypes,
   requireNativeComponent,
   View,
 } from 'react-native';
-import CustomPropTypes from './CustomPropTypes';
 
 const AndroidTab = requireNativeComponent('Tab', Tab);
 
@@ -16,7 +16,7 @@ class Tab extends Component {
     iconResId: PropTypes.string,
     iconPackage: PropTypes.string,
     iconSize: PropTypes.number,
-    textColor: CustomPropTypes.color,
+    textColor: PropTypes.string,
     onTabSelected: PropTypes.func,
   };
 
@@ -28,6 +28,7 @@ class Tab extends Component {
     return (
       <AndroidTab
         {...this.props}
+        textColor={processColor(this.props.textColor)}
         onTabSelected={this._onTabSelected.bind(this)}
         collapsable={false}/>
     );

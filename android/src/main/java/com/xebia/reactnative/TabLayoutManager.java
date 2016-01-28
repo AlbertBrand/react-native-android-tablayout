@@ -1,6 +1,5 @@
 package com.xebia.reactnative;
 
-import android.graphics.Color;
 import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
@@ -68,14 +67,9 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
   }
 
   @ReactProp(name = "selectedTabIndicatorColor")
-  public void setSelectedTabIndicatorColor(ReactTabLayout view, String indicatorColor) {
+  public void setSelectedTabIndicatorColor(ReactTabLayout view, int indicatorColor) {
     Log.d(REACT_CLASS, "selectedTabIndicatorColor " + indicatorColor);
-    try {
-      int highlightColor = Color.parseColor(indicatorColor);
-      view.setSelectedTabIndicatorColor(highlightColor);
-    } catch (IllegalArgumentException e) {
-      Log.w(REACT_CLASS, "Unparseable color: " + indicatorColor);
-    }
+    view.setSelectedTabIndicatorColor(indicatorColor);
   }
 
   @ReactProp(name = "tabMode")

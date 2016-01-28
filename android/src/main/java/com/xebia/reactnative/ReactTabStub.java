@@ -3,7 +3,6 @@ package com.xebia.reactnative;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.support.design.widget.TabLayout.Tab;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +28,7 @@ public class ReactTabStub extends View {
   private String iconPackage;
   private String iconUri;
   private int iconSize;
-  private String textColor;
+  private int textColor;
 
   public void attachCustomTabView(Tab tab) {
     this.tab = tab;
@@ -44,7 +43,7 @@ public class ReactTabStub extends View {
     if (name != null) {
       nameChanged();
     }
-    if (textColor != null) {
+    if (textColor != 0) {
       textColorChanged();
     }
     if (iconUri != null) {
@@ -82,7 +81,7 @@ public class ReactTabStub extends View {
     iconSizeChanged();
   }
 
-  public void setTextColor(String textColor) {
+  public void setTextColor(int textColor) {
     this.textColor = textColor;
     textColorChanged();
   }
@@ -101,9 +100,9 @@ public class ReactTabStub extends View {
 
   private void iconResourceChanged() {
     if (tabImage == null) return;
-    Log.d(TAG, "iconResourceChanged, id: " + iconResId + " package: " + iconPackage);
-
     String packageName = iconPackage != null ? iconPackage : getContext().getPackageName();
+    Log.d(TAG, "iconResourceChanged, id: " + iconResId + " package: " + packageName);
+
     try {
       int resId = getContext().getResources().getIdentifier(iconResId, "drawable", packageName);
       tabImage.setImageResource(resId);
@@ -138,12 +137,7 @@ public class ReactTabStub extends View {
     if (tabText == null) return;
     Log.d(TAG, "textColorChanged: " + textColor);
 
-    try {
-      int color = Color.parseColor(textColor);
-      tabText.setTextColor(color);
-    } catch (Exception e) {
-      Log.e(TAG, "Can't parse textColor: " + textColor, e);
-    }
+    tabText.setTextColor(textColor);
   }
 
   public void accessibilityLabelChanged() {
