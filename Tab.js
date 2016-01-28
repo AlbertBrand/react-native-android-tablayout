@@ -4,6 +4,7 @@ import React, {
   requireNativeComponent,
   View,
 } from 'react-native';
+import CustomPropTypes from './CustomPropTypes';
 
 const AndroidTab = requireNativeComponent('Tab', Tab);
 
@@ -15,7 +16,7 @@ class Tab extends Component {
     iconResId: PropTypes.string,
     iconPackage: PropTypes.string,
     iconSize: PropTypes.number,
-    textColor: PropTypes.string,
+    textColor: CustomPropTypes.color,
     onTabSelected: PropTypes.func,
   };
 
