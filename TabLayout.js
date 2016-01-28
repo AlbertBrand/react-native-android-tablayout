@@ -11,7 +11,7 @@ const AndroidTabLayout = requireNativeComponent('TabLayout', TabLayout);
 class TabLayout extends Component {
   static propTypes = {
     ...View.propTypes,
-    tabTextColor: PropTypes.string,
+    selectedTabIndicatorColor: PropTypes.string,
     selectedTab: PropTypes.number,
     tabMode: PropTypes.oneOf(['fixed', 'scrollable']),
     onTabSelected: PropTypes.func,
@@ -25,7 +25,7 @@ class TabLayout extends Component {
     return (
       <AndroidTabLayout
         {...this.props}
-        tabTextColor={processColor(this.props.tabTextColor)}
+        selectedTabIndicatorColor={processColor(this.props.selectedTabIndicatorColor)}
         style={[{ height: 48 }, this.props.style]}
         onTabSelected={this._onTabSelected.bind(this)}/>
     );
