@@ -43,7 +43,7 @@ onTabSelected             | func    | Provide callback function with `e:Event` a
 Prop                | Type    | Explanation
 ---                 | ---     | ---
 name                | string  | Tab name.
-iconResId           | string  | Icon resource ID. Points to src/res/drawable*/<iconResId>.*
+iconResId           | string  | Icon resource ID. Points to a drawable, see the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
 iconPackage         | string  | Icon resource package. If not provided, defaults to current package. Use 'android' for built-in icons. See the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
 iconUri             | string  | Icon URI. Only allows file:// URIs. See how to combine with [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) in the [IconsOnTopTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/IconsOnTopTabLayout.js).
 iconSize            | number  | Icon size.
