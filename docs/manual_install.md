@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-Register module in `MainActivity.java` for React-Native 0.18+:
+Register module in `MainActivity.java` for React-Native 0.19+:
 
 ```java
 // ...
@@ -39,33 +39,5 @@ public class MainActivity extends ReactActivity {
     }
     
     // ...
-}
-```
-
-For React-Native 0.17:
-
-```java
-// ...
-
-import com.xebia.reactnative.TabLayoutPackage;    // <--- import
-
-public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    // ...
-    mReactInstanceManager = ReactInstanceManager.builder()
-      .setApplication(getApplication())
-      .setBundleAssetName("index.android.bundle")
-      .setJSMainModuleName("index.android")
-      .addPackage(new MainReactPackage())
-      .addPackage(new TabLayoutPackage())         // <--- add package
-      .setUseDeveloperSupport(BuildConfig.DEBUG)
-      .setInitialLifecycleState(LifecycleState.RESUMED)
-      .build();
-    // ...
-  }
-
-  // ...
 }
 ```
