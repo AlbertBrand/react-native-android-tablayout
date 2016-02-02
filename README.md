@@ -6,6 +6,10 @@ native and similar in use like the [TabBarIOS](https://facebook.github.io/react-
 
 ![Image of tablayout](https://i.imgur.com/qWOWugu.gif)
 
+## Example Project
+
+You can find an example project in [a separate repo](https://github.com/AlbertBrand/react-native-android-tablayout-example).
+
 ## Installation
 
 Install module with NPM
@@ -50,10 +54,6 @@ iconSize            | number  | Icon size.
 textColor           | string  | Text color. Specify in [CSS color format](https://facebook.github.io/react-native/docs/colors.html).
 onTabSelected       | func    | Provide callback function with `e:Event` as argument. Called on the tab that was selected. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 accessibilityLabel  | string  | Accessibility label for tab. Tabs are already set as accessible.
-
-## Example 
-
-The example project moved to [a separate repo](https://github.com/AlbertBrand/react-native-android-tablayout-example).
 
 ## Todo
 
