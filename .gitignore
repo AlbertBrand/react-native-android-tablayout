@@ -2,4 +2,5 @@ android/.gradle
 android/build
 .gradle
 build
+node_modules
 rn-cli.config.js
