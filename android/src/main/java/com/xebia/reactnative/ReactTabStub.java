@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout.Tab;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.facebook.stetho.common.StringUtil;
 
 public class ReactTabStub extends View {
   public static final String TAG = "ReactTabStub";
@@ -96,6 +98,8 @@ public class ReactTabStub extends View {
     Log.d(TAG, "nameChanged: " + name);
 
     tabText.setText(name);
+
+    updateLayout();
   }
 
   private void iconResourceChanged() {
@@ -103,24 +107,37 @@ public class ReactTabStub extends View {
     String packageName = iconPackage != null ? iconPackage : getContext().getPackageName();
     Log.d(TAG, "iconResourceChanged, id: " + iconResId + " package: " + packageName);
 
-    try {
-      int resId = getContext().getResources().getIdentifier(iconResId, "drawable", packageName);
-      tabImage.setImageResource(resId);
-    } catch (Exception e) {
-      Log.e(TAG, "Icon resource id " + iconResId + " with package " + packageName + " not found", e);
+    if (!TextUtils.isEmpty(iconResId)) {
+      try {
+        int resId = getContext().getResources().getIdentifier(iconResId, "drawable", packageName);
+        tabImage.setImageResource(resId);
+        tabImage.setVisibility(View.VISIBLE);
+      } catch (Exception e) {
+        Log.e(TAG, "Icon resource id " + iconResId + " with package " + packageName + " not found", e);
+      }
+    } else {
+      tabImage.setVisibility(View.GONE);
     }
+
+    updateLayout();
   }
 
   private void iconUriChanged() {
     if (tabImage == null) return;
     Log.d(TAG, "iconUriChanged: " + iconUri);
 
-    // iconUri only supports file:// for now
     if (iconUri.startsWith("file://")) {
       String pathName = iconUri.substring(7);
       Bitmap bm = BitmapFactory.decodeFile(pathName);
       tabImage.setImageBitmap(bm);
+      tabImage.setVisibility(View.VISIBLE);
+    } else if (TextUtils.isEmpty(iconUri)) {
+      tabImage.setVisibility(View.GONE);
+    } else {
+      Log.e(TAG, "Icon uri only supports file:// for now, saw " + iconUri);
     }
+
+    updateLayout();
   }
 
   private void iconSizeChanged() {
@@ -131,6 +148,8 @@ public class ReactTabStub extends View {
     int size = Math.round(iconSize * scale);
     tabImage.getLayoutParams().width = size;
     tabImage.getLayoutParams().height = size;
+
+    updateLayout();
   }
 
   private void textColorChanged() {
@@ -147,5 +166,15 @@ public class ReactTabStub extends View {
 
     ViewGroup parent = (ViewGroup) customView.getParent();
     parent.setContentDescription(contentDescription);
+  }
+
+  private void updateLayout() {
+    if (customView == null || customView.getParent() == null) return;
+
+    View tabView = (View) customView.getParent();
+    tabView.measure(
+        View.MeasureSpec.makeMeasureSpec(tabView.getMeasuredWidth(), View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(tabView.getMeasuredHeight(), View.MeasureSpec.EXACTLY));
+    tabView.layout(tabView.getLeft(), tabView.getTop(), tabView.getRight(), tabView.getBottom());
   }
 }

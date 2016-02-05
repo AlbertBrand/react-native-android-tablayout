@@ -41,11 +41,12 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
     }
 
     Tab tab = tabLayout.newTab();
+    tabLayout.addTab(tab);
+
     ReactTabStub tabStub = (ReactTabStub) child;
     tabStub.attachCustomTabView(tab);
 
     tabLayout.tabStubs.add(tabStub);
-    tabLayout.addTab(tab);
 
     // set accessibilityLabel on parent TabView, which is now available after addTab call
     if (tabStub.getContentDescription() != null) {
