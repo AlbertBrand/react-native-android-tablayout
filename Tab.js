@@ -11,26 +11,28 @@ const AndroidTab = requireNativeComponent('Tab', Tab);
 class Tab extends Component {
   static propTypes = {
     ...View.propTypes,
-    name: PropTypes.string,
-    iconUri: PropTypes.string,
-    iconResId: PropTypes.string,
     iconPackage: PropTypes.string,
+    iconResId: PropTypes.string,
     iconSize: PropTypes.number,
-    textColor: PropTypes.string,
+    iconUri: PropTypes.string,
+    name: PropTypes.string,
     onTabSelected: PropTypes.func,
+    textColor: PropTypes.string,
   };
 
-  _onTabSelected(e:Event) {
-    this.props.onTabSelected && this.props.onTabSelected(e);
+  onTabSelected(e) {
+    if (this.props.onTabSelected) {
+      this.props.onTabSelected(e);
+    }
   }
 
   render() {
     return (
       <AndroidTab
         {...this.props}
-        textColor={processColor(this.props.textColor)}
-        onTabSelected={this._onTabSelected.bind(this)}
-        collapsable={false}/>
+        collapsable={false}
+        onTabSelected={this.onTabSelected.bind(this)}
+        textColor={processColor(this.props.textColor)}/>
     );
   }
 }
