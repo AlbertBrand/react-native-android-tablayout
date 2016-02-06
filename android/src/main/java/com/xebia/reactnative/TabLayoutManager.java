@@ -84,6 +84,17 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
     }
   }
 
+  @ReactProp(name = "tabGravity")
+  public void setTabGravity(ReactTabLayout view, String gravity) {
+    Log.d(REACT_CLASS, "tabGravity " + gravity);
+    try {
+      TabGravity tabGravity = TabGravity.fromString(gravity);
+      view.setTabGravity(tabGravity.gravity);
+    } catch (IllegalArgumentException e) {
+      Log.w(REACT_CLASS, "No valid tabGravity: " + gravity);
+    }
+  }
+
   @Override
   protected void addEventEmitters(ThemedReactContext reactContext, ReactTabLayout view) {
     mEventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();

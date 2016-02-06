@@ -39,6 +39,7 @@ Prop                      | Type    | Explanation
 ---                       | ---     | ---
 selectedTab               | number  | Use for selecting the initial tab and/or connecting to state. See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 selectedTabIndicatorColor | string  | Color of indicator line. Specify in [CSS color format](https://facebook.github.io/react-native/docs/colors.html).
+tabGravity                | string  | Set tab gravity. Default 'fill', use 'center' when tabstrip needs to be centered.
 tabMode                   | string  | Set tab mode. Default 'fixed', use 'scrollable' when tabstrip needs to scroll.
 onTabSelected             | func    | Provide callback function with `e:Event` as argument. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 

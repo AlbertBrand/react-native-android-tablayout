@@ -14,6 +14,7 @@ class TabLayout extends Component {
     onTabSelected: PropTypes.func,
     selectedTab: PropTypes.number,
     selectedTabIndicatorColor: PropTypes.string,
+    tabGravity: PropTypes.oneOf(['fill', 'center']),
     tabMode: PropTypes.oneOf(['fixed', 'scrollable']),
   };
 
