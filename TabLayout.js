@@ -17,17 +17,17 @@ class TabLayout extends Component {
     tabMode: PropTypes.oneOf(['fixed', 'scrollable']),
   };
 
-  onTabSelected(e) {
+  onTabSelected = (e) => {
     if (this.props.onTabSelected) {
       this.props.onTabSelected(e);
     }
-  }
+  };
 
   render() {
     return (
       <AndroidTabLayout
         {...this.props}
-        onTabSelected={this.onTabSelected.bind(this)}
+        onTabSelected={this.onTabSelected}
         selectedTabIndicatorColor={processColor(this.props.selectedTabIndicatorColor)}
         style={[{height: 48}, this.props.style]}/>
     );

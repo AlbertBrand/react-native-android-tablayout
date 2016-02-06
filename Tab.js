@@ -20,18 +20,18 @@ class Tab extends Component {
     textColor: PropTypes.string,
   };
 
-  onTabSelected(e) {
+  onTabSelected = (e) => {
     if (this.props.onTabSelected) {
       this.props.onTabSelected(e);
     }
-  }
+  };
 
   render() {
     return (
       <AndroidTab
         {...this.props}
         collapsable={false}
-        onTabSelected={this.onTabSelected.bind(this)}
+        onTabSelected={this.onTabSelected}
         textColor={processColor(this.props.textColor)}/>
     );
   }
