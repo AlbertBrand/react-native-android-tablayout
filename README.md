@@ -12,18 +12,22 @@ You can find an example project in [a separate repo](https://github.com/AlbertBr
 
 ## Installation
 
-Install module with NPM
+Install module with NPM:
 
 ```bash
-npm i --save react-native-android-tablayout
+npm install --save react-native-android-tablayout
 ```
 
-If you have a fairly default setup of your project (React-Native 0.19+), you can try out the installer task. 
-It will try to automatically perform the required changes on the Gradle and Java files for you. It won't back up 
-anything so make sure you can reset its changes.
+If you haven't installed [RNPM](https://github.com/rnpm/rnpm):
 
 ```bash
-gradle -b node_modules/react-native-android-tablayout/build.gradle install
+npm install rnpm -g
+```
+
+When you have installed RNPM:
+
+```bash
+rnpm link react-native-android-tablayout
 ```
 
 [Manual install guide](docs/manual_install.md).
