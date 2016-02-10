@@ -99,7 +99,7 @@ export default class MyComponent extends Component {
         <TabLayout>
           <Tab style={{width: 110, height: 48}}>
             <Text>Tab 1</Text>
-            <Text>Hey, it's multiline</Text>
+            <Text>Hey, multiline!</Text>
           </Tab
           <Tab style={{width: 110, height: 48}}>
             <Image source={require('./image/tabImage.png')}/>
