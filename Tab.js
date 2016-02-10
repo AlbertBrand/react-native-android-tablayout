@@ -32,6 +32,7 @@ class Tab extends Component {
       <View
         children={children}
         collapsable={false}
+        pointerEvents={'none'}
         style={style}
       /> : null;
 
