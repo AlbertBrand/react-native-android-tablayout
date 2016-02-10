@@ -96,6 +96,12 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
   }
 
   @Override
+  public boolean needsCustomLayoutForChildren() {
+    // don't bother to layout the tab stub
+    return true;
+  }
+
+  @Override
   protected void addEventEmitters(ThemedReactContext reactContext, ReactTabLayout view) {
     mEventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();
   }

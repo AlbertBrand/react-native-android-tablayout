@@ -1,13 +1,18 @@
 package com.xebia.reactnative;
 
+import android.util.Log;
+import android.view.View;
+import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.common.MapBuilder;
+import com.facebook.react.uimanager.LayoutShadowNode;
+import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
 import java.util.Map;
 
-public class TabManager extends SimpleViewManager<ReactTabStub> {
+public class TabManager extends ViewGroupManager<ReactTabStub> {
   public static final String REACT_CLASS = "Tab";
 
   @Override
@@ -18,6 +23,15 @@ public class TabManager extends SimpleViewManager<ReactTabStub> {
   @Override
   protected ReactTabStub createViewInstance(ThemedReactContext themedReactContext) {
     return new ReactTabStub(themedReactContext);
+  }
+
+  @Override
+  public void addView(ReactTabStub view, View child, int index) {
+    Log.d(REACT_CLASS, "addView");
+    if (index != 0) {
+      throw new JSApplicationIllegalArgumentException("The Tab can only have a single child view");
+    }
+    view.setCustomView(child);
   }
 
   @ReactProp(name = "name")

@@ -27,12 +27,17 @@ class Tab extends Component {
   };
 
   render() {
+    const {style, children, ...otherProps} = this.props;
+    const wrappedChildren = children ?
+      <View style={style} children={children} collapsable={false}/> : null;
     return (
       <AndroidTab
-        {...this.props}
+        {...otherProps}
+        children={wrappedChildren}
         collapsable={false}
         onTabSelected={this.onTabSelected}
-        textColor={processColor(this.props.textColor)}/>
+        textColor={processColor(this.props.textColor)}
+      />
     );
   }
 }
