@@ -97,7 +97,7 @@ public class TabLayoutManager extends ViewGroupManager<ReactTabLayout> {
 
   @Override
   public boolean needsCustomLayoutForChildren() {
-    // don't bother to layout the tab stub
+    // don't bother to layout the child tab stub views
     return true;
   }
 

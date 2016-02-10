@@ -29,7 +29,12 @@ class Tab extends Component {
   render() {
     const {style, children, ...otherProps} = this.props;
     const wrappedChildren = children ?
-      <View style={style} children={children} collapsable={false}/> : null;
+      <View
+        children={children}
+        collapsable={false}
+        style={style}
+      /> : null;
+
     return (
       <AndroidTab
         {...otherProps}
