@@ -4,7 +4,7 @@ A React-Native (0.19+) wrapper for the standalone Android
 [TabLayout](http://developer.android.com/reference/android/support/design/widget/TabLayout.html) component. It's fully 
 native and similar in use like the [TabBarIOS](https://facebook.github.io/react-native/docs/tabbarios.html) component. 
 
-![Image of tablayout](https://i.imgur.com/qWOWugu.gif)
+![Animated example](https://i.imgur.com/nKFVnu4.gif)
 
 ## Example Project
 
@@ -18,24 +18,49 @@ Install module with NPM:
 npm install --save react-native-android-tablayout
 ```
 
-If you haven't installed [RNPM](https://github.com/rnpm/rnpm):
+If you haven't installed [RNPM](https://github.com/rnpm/rnpm), run:
 
 ```bash
-npm install rnpm -g
+npm install -g rnpm
 ```
 
-When you have installed RNPM:
+After RNPM is installed:
 
 ```bash
 rnpm link react-native-android-tablayout
 ```
 
-[Manual install guide](docs/manual_install.md).
+If you want to setup the project manually, see the [manual install guide](docs/manual_install.md).
 
-After the configuration, run `react-native run-android` from your project root to see if there are no compilation
-failures.
+After setting up your project, run `react-native run-android` from the root to see if there are no compilation failures.
 
 ## Usage
+
+Make sure to import the `Tab` and `TabLayout` component in your script: 
+
+```javascript
+import { Tab, TabLayout } from 'react-native-android-tablayout';
+```
+
+Then, create a tab layout as follows:
+
+```javascript
+export default class MyComponent extends Component {
+  render() {
+    return (
+      <View>
+        <TabLayout>
+          <Tab name="Tab 1"/>
+          <Tab name="Tab 2"/>
+          <Tab name="Tab 3"/>
+        </TabLayout>
+      </View>
+    );
+  }
+}
+```
+
+The `TabLayout` and `Tab` accept the following properties:
 
 ### TabLayout
 
@@ -60,13 +85,42 @@ textColor           | string  | Text color. Specify in [CSS color format](https:
 onTabSelected       | func    | Provide callback function with `e:Event` as argument. Called on the tab that was selected. When called, the selected tab position is found in `e.nativeEvent.position` (0-based). See the [StatefulTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/StatefulTabLayout.js).
 accessibilityLabel  | string  | Accessibility label for tab. Tabs are already set as accessible.
 
+Usage of these properties can be seen by example in [the example repo](https://github.com/AlbertBrand/react-native-android-tablayout-example).
+
+## Custom views
+
+Since v0.2, you can define a custom view for a tab by adding child components to a `Tab` element:
+
+```javascript
+export default class MyComponent extends Component {
+  render() {
+    return (
+      <View>
+        <TabLayout>
+          <Tab style={{width: 110, height: 48}}>
+            <Text>Tab 1</Text>
+            <Text>Hey, it's multiline</Text>
+          </Tab
+          <Tab style={{width: 110, height: 48}}>
+            <Image source={require('./image/tabImage.png')}/>
+          </Tab
+          <Tab style={{width: 110, height: 48}}>
+            <Icon name="user"/>
+          </Tab
+        </TabLayout>
+      </View>
+    );
+  }
+}
+```
+
+You need to specify the width and height of the tab contents, else no contents will show up. This might be improved in the future.
+
+See the [CustomViewTabLayout example](https://github.com/AlbertBrand/react-native-android-tablayout-example/blob/master/app/CustomViewTabLayout.js) for a working example.
+
 ## Todo
 
-  * mirror Android API:
-    * icon alignment (icons on side)
-    * colors, fonts
-    * add/remove tabs
-    * etc.
+  * add/remove tabs not implemented
+  * custom views need a width and height to work
 
 PRs are welcome!
-  
