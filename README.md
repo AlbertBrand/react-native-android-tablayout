@@ -100,13 +100,13 @@ export default class MyComponent extends Component {
           <Tab style={{width: 110, height: 48}}>
             <Text>Tab 1</Text>
             <Text>Hey, multiline!</Text>
-          </Tab
+          </Tab>
           <Tab style={{width: 110, height: 48}}>
             <Image source={require('./image/tabImage.png')}/>
-          </Tab
+          </Tab>
           <Tab style={{width: 110, height: 48}}>
             <Icon name="user"/>
-          </Tab
+          </Tab>
         </TabLayout>
       </View>
     );
