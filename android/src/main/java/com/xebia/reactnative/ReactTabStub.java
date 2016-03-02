@@ -38,6 +38,7 @@ public class ReactTabStub extends ViewGroup {
   private String iconUri;
   private int iconSize;
   private int textColor;
+  private int textSize;
 
   public void attachCustomTabView(Tab tab) {
     Log.d(TAG, "attachCustomTabView");
@@ -57,6 +58,9 @@ public class ReactTabStub extends ViewGroup {
       }
       if (textColor != 0) {
         textColorChanged();
+      }
+      if (textSize != 0) {
+        textSizeChanged();
       }
       if (iconUri != null) {
         iconUriChanged();
@@ -99,6 +103,11 @@ public class ReactTabStub extends ViewGroup {
   public void setTextColor(int textColor) {
     this.textColor = textColor;
     textColorChanged();
+  }
+
+  public void setTextSize(int textSize) {
+    this.textSize = textSize;
+    textSizeChanged();
   }
 
   public void setCustomView(View customView) {
@@ -175,6 +184,13 @@ public class ReactTabStub extends ViewGroup {
     Log.d(TAG, "textColorChanged: " + textColor);
 
     tabText.setTextColor(textColor);
+  }
+
+  private void textSizeChanged() {
+    if (tabText == null) return;
+    Log.d(TAG, "textSizeChanged: " + textSize);
+
+    tabText.setTextSize(textSize);
   }
 
   public void accessibilityLabelChanged() {

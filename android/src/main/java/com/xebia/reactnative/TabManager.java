@@ -64,6 +64,11 @@ public class TabManager extends ViewGroupManager<ReactTabStub> {
     view.setTextColor(textColor);
   }
 
+  @ReactProp(name = "textSize")
+  public void setTextSize(ReactTabStub view, int textSize) {
+    view.setTextSize(textSize);
+  }
+
   @Override
   public void setAccessibilityLabel(ReactTabStub view, String accessibilityLabel) {
     view.setAccessibilityLabel(accessibilityLabel);

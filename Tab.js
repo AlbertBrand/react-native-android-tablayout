@@ -18,6 +18,7 @@ class Tab extends Component {
     name: PropTypes.string,
     onTabSelected: PropTypes.func,
     textColor: PropTypes.string,
+    textSize: PropTypes.number,
   };
 
   onTabSelected = (e) => {
