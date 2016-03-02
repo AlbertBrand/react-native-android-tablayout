@@ -69,6 +69,11 @@ public class TabManager extends ViewGroupManager<ReactTabStub> {
     view.setTextSize(textSize);
   }
 
+  @ReactProp(name = "textMargin")
+  public void setTextMargin(ReactTabStub view, int textMargin) {
+    view.setTextMargin(textMargin);
+  }
+
   @Override
   public void setAccessibilityLabel(ReactTabStub view, String accessibilityLabel) {
     view.setAccessibilityLabel(accessibilityLabel);
