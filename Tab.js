@@ -1,10 +1,13 @@
 import React, {
   Component,
+  PropTypes
+} from 'react';
+
+import {
   processColor,
-  PropTypes,
   requireNativeComponent,
   View,
-} from 'react-native';
+} from 'react-native'
 
 const AndroidTab = requireNativeComponent('Tab', Tab);
 
