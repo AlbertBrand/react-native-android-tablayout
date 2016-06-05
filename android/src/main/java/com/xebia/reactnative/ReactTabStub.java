@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 import com.facebook.stetho.common.StringUtil;
 
 public class ReactTabStub extends ViewGroup {
@@ -38,6 +39,8 @@ public class ReactTabStub extends ViewGroup {
   private String iconUri;
   private int iconSize;
   private int textColor;
+  private int textSize;
+  private int textMargin;
 
   public void attachCustomTabView(Tab tab) {
     Log.d(TAG, "attachCustomTabView");
@@ -57,6 +60,12 @@ public class ReactTabStub extends ViewGroup {
       }
       if (textColor != 0) {
         textColorChanged();
+      }
+      if (textSize != 0) {
+        textSizeChanged();
+      }
+      if (textMargin != 0) {
+        textMarginChanged();
       }
       if (iconUri != null) {
         iconUriChanged();
@@ -99,6 +108,16 @@ public class ReactTabStub extends ViewGroup {
   public void setTextColor(int textColor) {
     this.textColor = textColor;
     textColorChanged();
+  }
+
+  public void setTextSize(int textSize) {
+    this.textSize = textSize;
+    textSizeChanged();
+  }
+
+  public void setTextMargin(int textMargin) {
+    this.textMargin = textMargin;
+    textMarginChanged();
   }
 
   public void setCustomView(View customView) {
@@ -175,6 +194,22 @@ public class ReactTabStub extends ViewGroup {
     Log.d(TAG, "textColorChanged: " + textColor);
 
     tabText.setTextColor(textColor);
+  }
+
+  private void textSizeChanged() {
+    if (tabText == null) return;
+    Log.d(TAG, "textSizeChanged: " + textSize);
+
+    tabText.setTextSize(textSize);
+  }
+
+  private void textMarginChanged() {
+    if (tabText == null) return;
+    Log.d(TAG, "textMarginChanged: " + textMargin);
+
+    LinearLayout.LayoutParams margin = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    margin.setMargins(0, textMargin, 0, 0);
+    tabText.setLayoutParams(margin);
   }
 
   public void accessibilityLabelChanged() {

@@ -4,3 +4,5 @@ android/build
 build
 node_modules
 rn-cli.config.js
+.DS_Store
+
