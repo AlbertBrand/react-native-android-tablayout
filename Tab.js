@@ -1,17 +1,16 @@
+/* @flow */
 import React, {
   Component,
   PropTypes
 } from 'react';
-
 import {
+  ColorPropType,
   processColor,
   requireNativeComponent,
-  View,
-} from 'react-native'
+  View
+} from 'react-native';
 
-const AndroidTab = requireNativeComponent('Tab', Tab);
-
-class Tab extends Component {
+export default class Tab extends Component {
   static propTypes = {
     ...View.propTypes,
     iconPackage: PropTypes.string,
@@ -20,10 +19,10 @@ class Tab extends Component {
     iconUri: PropTypes.string,
     name: PropTypes.string,
     onTabSelected: PropTypes.func,
-    textColor: PropTypes.string,
+    textColor: ColorPropType
   };
 
-  onTabSelected = (e) => {
+  onTabSelected: Function = (e) => {
     if (this.props.onTabSelected) {
       this.props.onTabSelected(e);
     }
@@ -51,4 +50,4 @@ class Tab extends Component {
   }
 }
 
-module.exports = Tab;
+const AndroidTab = requireNativeComponent('Tab', Tab);
