@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.facebook.stetho.common.StringUtil;
 
 public class ReactTabStub extends ViewGroup {
   public static final String TAG = "ReactTabStub";
